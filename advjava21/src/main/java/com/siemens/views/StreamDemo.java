@@ -1,13 +1,14 @@
 package com.siemens.views;
 
+import com.github.javafaker.Faker;
 import com.siemens.dtos.IndividualDTO;
 import com.siemens.models.Gender;
+import com.siemens.models.Hobby;
 import com.siemens.models.Individual;
+import com.siemens.models.Person;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamDemo {
@@ -96,5 +97,47 @@ public class StreamDemo {
 
         IndividualComparatorDemo.generateIndividuals()
                 .stream().skip(10).forEach(System.out::println);
+
+     //flatten the list
+
+     List<Person> personList=  getPersonList();
+     List<Hobby> hobbyList=personList.stream().map(Person::getHobbies)
+             .flatMap(List::stream)
+             .toList();
+
+    hobbyList.forEach(System.out::println);
+
+
+
     }
+
+    public static  List<Person> getPersonList(){
+        List<Person> personList= new ArrayList<>();
+        Person person=null;
+        Faker faker = new Faker();
+        for(int i=0; i<10; i++){
+
+            person=new Person();
+            person.setName(faker.name().firstName());
+            person.setHobbies(getHobbies());
+            personList.add(person);
+        }
+        return personList;
+    }
+
+    public static  List<Hobby> getHobbies(){
+        List<Hobby> hobbiesList= new ArrayList<>();
+        Faker faker = new Faker();
+        for(int i = 0; i<new Random().nextInt(2,7); i++){
+            hobbiesList.add(getRandomHobby());
+
+        }
+
+        return hobbiesList;
+    }
+    public static Hobby getRandomHobby(){
+        Hobby[] values=Hobby.values();
+        return values[(int)(Math.random()*values.length)];
+    }
+
 }
