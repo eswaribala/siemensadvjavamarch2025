@@ -6,6 +6,8 @@ import com.siemens.models.Individual;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import static com.siemens.views.IndividualComparatorDemo.getRandomGender;
@@ -27,8 +29,8 @@ public class BuiltInFunctionalInterfacesDemo {
         //Function
         Function<Individual, LocalDate> function =(obj)-> obj.getDateOfBirth();
        System.out.println("DOB="+function.apply(individual));
-
-
+       BiFunction<Individual,String,Boolean> biFunction =(obj,str)->obj.getPassword().equals(str);
+       System.out.println("Result="+biFunction.apply(individual,individual.getPassword()));
 
     }
 }
