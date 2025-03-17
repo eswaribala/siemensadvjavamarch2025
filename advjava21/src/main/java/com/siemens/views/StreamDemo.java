@@ -53,6 +53,11 @@ public class StreamDemo {
                 .collect(Collectors.groupingBy(Individual::getGender,Collectors.counting()));
     mappedCount.entrySet().stream().forEach(entrySet->System.out.println(entrySet.getKey()+" "+entrySet.getValue()));
 
+//all match
 
+       System.out.println(IndividualComparatorDemo.generateIndividuals()
+               .stream().allMatch(i->i.getFullName().getFirstName().startsWith("A")));
+        System.out.println(IndividualComparatorDemo.generateIndividuals()
+                .stream().anyMatch(i->i.getFullName().getFirstName().startsWith("A")));
     }
 }
