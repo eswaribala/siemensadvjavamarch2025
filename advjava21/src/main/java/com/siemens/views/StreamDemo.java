@@ -7,6 +7,7 @@ import com.siemens.models.Individual;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class StreamDemo {
@@ -59,5 +60,24 @@ public class StreamDemo {
                .stream().allMatch(i->i.getFullName().getFirstName().startsWith("A")));
         System.out.println(IndividualComparatorDemo.generateIndividuals()
                 .stream().anyMatch(i->i.getFullName().getFirstName().startsWith("A")));
+
+   //find first
+     Optional<Individual> individualOptional=  IndividualComparatorDemo.generateIndividuals()
+                .stream().filter(i->i.getDateOfBirth().getYear()==1994).findFirst();
+
+     if(individualOptional.isPresent()){
+         System.out.println(individualOptional.get());
+     }else {
+         System.out.println("No record found");
+     }
+//find any
+        Optional<Individual> individualOptional1=  IndividualComparatorDemo.generateIndividuals()
+                .stream().filter(i->i.getDateOfBirth().getYear()==1994).findAny();
+
+        if(individualOptional1.isPresent()){
+            System.out.println(individualOptional.get());
+        }else {
+            System.out.println("No record found");
+        }
     }
 }
