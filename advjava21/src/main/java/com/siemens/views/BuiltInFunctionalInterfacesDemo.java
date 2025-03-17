@@ -1,6 +1,7 @@
 package com.siemens.views;
 
 import com.github.javafaker.Faker;
+import com.siemens.fadades.DataGenerator;
 import com.siemens.fadades.TriFunction;
 import com.siemens.models.FullName;
 import com.siemens.models.Individual;
@@ -10,6 +11,7 @@ import java.time.ZoneId;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static com.siemens.views.IndividualComparatorDemo.getRandomGender;
 
@@ -47,5 +49,23 @@ public class BuiltInFunctionalInterfacesDemo {
         System.out.println(triFunction.apply(IndividualComparatorDemo.generateIndividuals().get(0),
                 IndividualComparatorDemo.generateIndividuals().get(1),
                 IndividualComparatorDemo.generateIndividuals().get(2)));
+
+        //supplier constructor reference
+
+        Supplier<Individual> individualSupplier = Individual::new;
+        Individual individualObj = individualSupplier.get();
+        individualObj.setAccountNo(faker.number().numberBetween(10000,1000000));
+        System.out.println(individualObj.getAccountNo());
+
+        //Supplier Method references
+        Supplier<String> supplier= DataGenerator::getName;
+        System.out.println(supplier.get());
+
+
+
+
+
     }
+
+
 }
