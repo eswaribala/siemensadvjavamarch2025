@@ -8,10 +8,8 @@ import com.siemens.models.Individual;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.List;
+import java.util.function.*;
 
 import static com.siemens.views.IndividualComparatorDemo.getRandomGender;
 
@@ -60,6 +58,15 @@ public class BuiltInFunctionalInterfacesDemo {
         //Supplier Method references
         Supplier<String> supplier= DataGenerator::getName;
         System.out.println(supplier.get());
+
+        //Consumer
+
+        Consumer<List<Individual>> consumer = (list)->{
+            for(Individual individualData:list){
+                System.out.println(individualData);
+            }
+        };
+        consumer.accept(IndividualComparatorDemo.generateIndividuals());
 
 
 
