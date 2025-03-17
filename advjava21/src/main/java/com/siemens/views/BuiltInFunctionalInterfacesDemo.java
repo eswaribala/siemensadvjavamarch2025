@@ -68,7 +68,10 @@ public class BuiltInFunctionalInterfacesDemo {
         };
         consumer.accept(IndividualComparatorDemo.generateIndividuals());
 
-
+        Predicate<Individual> individualPredicate=(obj)->{
+            return obj.getDateOfBirth().isBefore(LocalDate.now());
+        };
+        System.out.println("Is DOB before current Date="+individualPredicate.test(individual));
 
 
 
