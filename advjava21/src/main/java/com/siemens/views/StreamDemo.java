@@ -1,6 +1,7 @@
 package com.siemens.views;
 
 import com.siemens.dtos.IndividualDTO;
+import com.siemens.models.Gender;
 import com.siemens.models.Individual;
 
 import java.time.LocalDate;
@@ -37,14 +38,21 @@ public class StreamDemo {
       individualDTOList.forEach(System.out::println);
 
       //sort and create map
-      Map<String, LocalDate> map=  IndividualComparatorDemo.generateIndividuals().stream()
-                .filter(i->i.getDateOfBirth().getYear()<2000)
+      /*Map<String, LocalDate> map=  IndividualComparatorDemo.generateIndividuals().stream()
+                .filter(i->i.getDateOfBirth().getYear()<1990)
                 .sorted((obj1,obj2)->{return obj1.getDateOfBirth().compareTo(obj2.getDateOfBirth());})
                 .collect(Collectors.toMap(i->i.getFullName().getFirstName(),
                         Individual::getDateOfBirth));
 
       map.entrySet().stream().forEach(entrySet->
               System.out.println(entrySet.getKey()+" "+entrySet.getValue()));
+*/
+      //count how many male,female and other individuals
+
+    Map<Gender,Long>  mappedCount=  IndividualComparatorDemo.generateIndividuals().stream()
+                .collect(Collectors.groupingBy(Individual::getGender,Collectors.counting()));
+    mappedCount.entrySet().stream().forEach(entrySet->System.out.println(entrySet.getKey()+" "+entrySet.getValue()));
+
 
     }
 }
