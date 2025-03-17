@@ -79,5 +79,14 @@ public class StreamDemo {
         }else {
             System.out.println("No record found");
         }
+
+
+    //exception
+
+     Individual object=IndividualComparatorDemo.generateIndividuals()
+                .stream().filter(i->i.getDateOfBirth().getYear()==1994)
+             .findFirst()
+             .orElseThrow(()->new RuntimeException("No record found"));
+        System.out.println(object);
     }
 }
