@@ -88,5 +88,13 @@ public class StreamDemo {
              .findFirst()
              .orElseThrow(()->new RuntimeException("No record found"));
         System.out.println(object);
+
+     //pick first 10 records
+        IndividualComparatorDemo.generateIndividuals()
+                .stream().limit(10).forEach(System.out::println);
+     //skip first 10 records
+
+        IndividualComparatorDemo.generateIndividuals()
+                .stream().skip(10).forEach(System.out::println);
     }
 }
