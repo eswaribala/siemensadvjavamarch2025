@@ -23,7 +23,8 @@ public class IndividualComparatorDemo {
     public static List<Individual> generateIndividuals(){
 
         List<Individual> individuals = new ArrayList<>();
-        Individual individual=null;
+        Individual individual=new Individual();
+
         Faker faker = new Faker();
 
         for (int i = 0; i < 100; i++) {
