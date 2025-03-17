@@ -12,7 +12,14 @@ public class StreamDemo {
                 .map(Individual::getFullName)
                 .forEach(System.out::println);
 
+       //count
 
+       long count= IndividualComparatorDemo.generateIndividuals().stream()
+                .filter(i->i.getDateOfBirth().getYear()<2000)
+                .count();
+       System.out.println("Number of people born before 2000=>"+count);
+
+       
 
 
 
