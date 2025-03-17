@@ -1,6 +1,10 @@
 package com.siemens.views;
 
+import com.siemens.dtos.IndividualDTO;
 import com.siemens.models.Individual;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StreamDemo {
     public static void main(String[] args) {
@@ -21,11 +25,13 @@ public class StreamDemo {
 
       // sorting
 
-        IndividualComparatorDemo.generateIndividuals().stream()
+      List<IndividualDTO> individualDTOList=  IndividualComparatorDemo.generateIndividuals().stream()
                 .filter(i->i.getDateOfBirth().getYear()<2000)
                 .sorted((obj1,obj2)->{return obj1.getDateOfBirth().compareTo(obj2.getDateOfBirth());})
+                .map(individual -> new IndividualDTO(individual.getFullName().getFirstName(),individual.getDateOfBirth()))
+                .toList();
 
-                .forEach(System.out::println);
+      individualDTOList.forEach(System.out::println);
 
 
     }
