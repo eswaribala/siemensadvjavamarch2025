@@ -1,7 +1,13 @@
 package com.siemens.models;
 
-import java.util.SplittableRandom;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.SplittableRandom;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     private long addressNo;
     private String doorNo;

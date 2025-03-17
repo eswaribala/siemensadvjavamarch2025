@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(callSuper = true)
 public class Corporate extends Customer {
 
     private CompanyType companyType;
