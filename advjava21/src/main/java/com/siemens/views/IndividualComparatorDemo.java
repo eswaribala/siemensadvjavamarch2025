@@ -8,15 +8,22 @@ import com.siemens.models.Individual;
 
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class IndividualComparatorDemo {
 
     public static void main(String[] args) {
 
-        for(Individual individual:generateIndividuals())
-            System.out.println(individual);
+        Comparator<Individual> comparator=(o1, o2) -> {
+            return o1.getFullName().getFirstName().compareTo(o2.getFullName().getFirstName());
+        };
 
+        List<Individual> individuals=generateIndividuals();
+        individuals.sort(comparator);
+        for(Individual individual : individuals) {
+            System.out.println(individual);
+        }
 
     }
 

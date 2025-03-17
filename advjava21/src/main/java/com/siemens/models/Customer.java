@@ -8,7 +8,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Data
 public class Customer {
     protected long accountNo;
     protected FullName fullName;
