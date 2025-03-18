@@ -3,6 +3,7 @@ package com.siemens.views;
 import com.siemens.models.AccountAggregator;
 import com.siemens.models.SavingsAccount;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
@@ -13,12 +14,14 @@ import java.util.stream.Collector;
 public class AccountCustomCollector implements Collector<SavingsAccount, AccountAggregator,AccountAggregator> {
     @Override
     public Supplier<AccountAggregator> supplier() {
-        return null;
+        return AccountAggregator::new;
     }
 
     @Override
     public BiConsumer<AccountAggregator, SavingsAccount> accumulator() {
-        return null;
+        return (pa,p)->{
+            pa.setTotalCost(p.getRunningTotal().add(pa.getTotalCost()));
+        };
     }
 
     @Override
@@ -28,11 +31,13 @@ public class AccountCustomCollector implements Collector<SavingsAccount, Account
 
     @Override
     public Function finisher() {
-        return null;
+        return (productAggregation ) ->{
+            return productAggregation;
+        };
     }
 
     @Override
     public Set<Characteristics> characteristics() {
-        return Set.of();
+        return  Collections.emptySet();
     }
 }

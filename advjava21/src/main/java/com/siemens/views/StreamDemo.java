@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import com.siemens.dtos.IndividualDTO;
 import com.siemens.models.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -108,14 +109,19 @@ public class StreamDemo {
 
     //aggregation
 
-      Optional<Long> maxValue=  generateSavingsAccounts().stream().map(Account::getRunningTotal)
-              .max(Long::compareTo);
+      Optional<BigDecimal> maxValue=  generateSavingsAccounts().stream().map(Account::getRunningTotal)
+              .max(BigDecimal::compareTo);
 
         maxValue.ifPresent(System.out::println);
 
-       Long openingTotalSum= generateSavingsAccounts().stream().map(Account::getRunningTotal)
-                .reduce(0L,Long::sum);
+       BigDecimal openingTotalSum= generateSavingsAccounts().stream().map(Account::getRunningTotal)
+                .reduce(BigDecimal.valueOf(0.0),BigDecimal::add);
        System.out.println("Sum="+openingTotalSum);
+
+       //custom collector
+      AccountAggregator accountAggregator=  generateSavingsAccounts().stream().collect(new AccountCustomCollector());
+
+     System.out.println(accountAggregator.getTotalCost());
 
     }
 
@@ -156,8 +162,7 @@ public class StreamDemo {
         SavingsAccount savingsAccount=null;
         for(int i=0; i<100; i++){
             savingsAccount=new SavingsAccount();
-            savingsAccount.setRunningTotal(faker.number()
-                    .numberBetween(5000L,100000000L));
+            savingsAccount.setRunningTotal(BigDecimal.valueOf(faker.number().numberBetween(5000,1000000)));
             savingsAccount.setOpeningDate(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             savingsAccount.setInterestRate(faker.number().numberBetween(1,100));
 

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Account {
-    protected long runningTotal;
+    protected BigDecimal runningTotal=BigDecimal.ZERO;
     protected LocalDate openingDate;
 
 }
