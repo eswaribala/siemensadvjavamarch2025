@@ -7,7 +7,6 @@ import java.util.Arrays;
 public class SafeVarArgsDemo {
     public static void main(String[] args) {
       SafeVarArgsDemo safeVarArgsDemo = new SafeVarArgsDemo();
-
         safeVarArgsDemo.showSkillSets("C#");
         safeVarArgsDemo.showSkillSets("Java","C#");
         safeVarArgsDemo.showSkillSets("C++","Java","C#");
