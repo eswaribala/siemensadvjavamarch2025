@@ -6,14 +6,15 @@ import java.util.Arrays;
 
 public class SafeVarArgsDemo {
     public static void main(String[] args) {
+      SafeVarArgsDemo safeVarArgsDemo = new SafeVarArgsDemo();
 
-       showSkillSets("C#");
-       showSkillSets("Java","C#");
-       showSkillSets("C++","Java","C#");
+        safeVarArgsDemo.showSkillSets("C#");
+        safeVarArgsDemo.showSkillSets("Java","C#");
+        safeVarArgsDemo.showSkillSets("C++","Java","C#");
     }
 
     @SafeVarargs
-    private static <T> void showSkillSets(T... skills){
+    private <T> void showSkillSets(T... skills){
          Arrays.stream(skills).toList().forEach(System.out::println);
     }
 }
