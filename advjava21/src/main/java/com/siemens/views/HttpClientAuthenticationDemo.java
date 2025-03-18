@@ -9,8 +9,9 @@ import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Base64;
 
-public class HttpClientDemo {
+public class HttpClientAuthenticationDemo {
     public static void main(String[] args) {
 
         //step 1
@@ -22,11 +23,13 @@ public class HttpClientDemo {
         //step 2
 
         HttpRequest request = HttpRequest.newBuilder().GET()
-                .uri(URI.create("https://restcountries.com/v2/all")) .build();
+                .uri(URI.create("https://httpbin.org/basic-auth/user/pass"))
+                .headers("Authorization",getBasicAuthenticationHeader("user","pass"))
+                .build();
 
         HttpResponse<String> response;
         HttpHeaders headers;
-        JSONArray jsonArray;
+
         try
         {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -34,11 +37,7 @@ public class HttpClientDemo {
             headers.map().entrySet().forEach((entry)->{
                 System.out.println(entry.getKey()+ ": " + entry.getValue());
             });
-           jsonArray = new JSONArray(response.body());
-           for (int i = 0; i < jsonArray.length(); i++) {
-               JSONObject jsonObject = jsonArray.getJSONObject(i);
-               System.out.println(jsonObject.getString("name"));
-           }
+           System.out.println(response.body());
 
         }catch (Exception ignored){
 
@@ -46,5 +45,10 @@ public class HttpClientDemo {
 
 
 
+    }
+
+    private static final String getBasicAuthenticationHeader(String username, String password) {
+        String valueToEncode = username + ":" + password;
+        return "Basic " + Base64.getEncoder().encodeToString(valueToEncode.getBytes());
     }
 }
