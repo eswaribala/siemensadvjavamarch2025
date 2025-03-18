@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Individual extends Customer{
+public sealed class Individual extends Customer permits LargeTaxPayer{
 
   private Gender gender;
   private LocalDate dateOfBirth;

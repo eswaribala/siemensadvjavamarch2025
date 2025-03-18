@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Customer {
+public sealed class Customer permits Individual,Corporate {
     protected long accountNo;
     protected FullName fullName;
     protected List<Address> addresses;

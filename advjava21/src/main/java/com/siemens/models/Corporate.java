@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Corporate extends Customer {
+public non-sealed class Corporate extends Customer {
 
     private CompanyType companyType;
 }
