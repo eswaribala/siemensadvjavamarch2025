@@ -2,12 +2,10 @@ package com.siemens.views;
 
 import com.github.javafaker.Faker;
 import com.siemens.dtos.IndividualDTO;
-import com.siemens.models.Gender;
-import com.siemens.models.Hobby;
-import com.siemens.models.Individual;
-import com.siemens.models.Person;
+import com.siemens.models.*;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -103,11 +101,21 @@ public class StreamDemo {
      List<Person> personList=  getPersonList();
      List<Hobby> hobbyList=personList.stream().map(Person::getHobbies)
              .flatMap(List::stream)
+             .distinct()
              .toList();
 
     hobbyList.forEach(System.out::println);
 
+    //aggregation
 
+      Optional<Long> maxValue=  generateSavingsAccounts().stream().map(Account::getRunningTotal)
+              .max(Long::compareTo);
+
+        maxValue.ifPresent(System.out::println);
+
+       Long openingTotalSum= generateSavingsAccounts().stream().map(Account::getRunningTotal)
+                .reduce(0L,Long::sum);
+       System.out.println("Sum="+openingTotalSum);
 
     }
 
@@ -138,6 +146,24 @@ public class StreamDemo {
     public static Hobby getRandomHobby(){
         Hobby[] values=Hobby.values();
         return values[(int)(Math.random()*values.length)];
+    }
+
+
+    public static List<SavingsAccount> generateSavingsAccounts(){
+
+        List<SavingsAccount> savingsAccountList= new ArrayList<>();
+        Faker faker = new Faker();
+        SavingsAccount savingsAccount=null;
+        for(int i=0; i<100; i++){
+            savingsAccount=new SavingsAccount();
+            savingsAccount.setRunningTotal(faker.number()
+                    .numberBetween(5000L,100000000L));
+            savingsAccount.setOpeningDate(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            savingsAccount.setInterestRate(faker.number().numberBetween(1,100));
+
+            savingsAccountList.add(savingsAccount);
+        }
+        return savingsAccountList;
     }
 
 }
