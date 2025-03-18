@@ -119,9 +119,11 @@ public class StreamDemo {
        System.out.println("Sum="+openingTotalSum);
 
        //custom collector
-      AccountAggregator accountAggregator=  generateSavingsAccounts().stream().collect(new AccountCustomCollector());
+      AccountAggregator accountAggregator=  generateSavingsAccounts().stream()
+              .collect(new AccountCustomCollector());
 
      System.out.println(accountAggregator.getTotalCost());
+
 
     }
 
