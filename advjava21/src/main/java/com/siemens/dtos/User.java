@@ -12,9 +12,8 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String address;
+    private Address address;
     private String phone;
     private String website;
-    private String Company;
-
+    private Company Company;
 }

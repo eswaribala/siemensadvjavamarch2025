@@ -2,11 +2,14 @@ package com.siemens.views;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.siemens.dtos.User;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -33,9 +36,9 @@ public class HttpClientAsyncDemoV1 {
 
               .thenAccept(response->{
 
-               ObjectMapper mapper = new ObjectMapper();
-               List<User> users=mapper.readValue(response, new TypeReference<User>() {
-                   });
+               Gson gson = new Gson();
+               Type userListType = new TypeToken<List<User>>() {}.getType();
+               List<User> users=gson.fromJson(response, userListType);
                users.forEach(System.out::println);
 
               }).exceptionally(ex->{
