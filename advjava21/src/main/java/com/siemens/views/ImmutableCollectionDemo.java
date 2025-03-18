@@ -13,7 +13,6 @@ public class ImmutableCollectionDemo {
         //java 10
        List<Individual> individualList= List.copyOf(IndividualComparatorDemo.generateIndividuals());
       // individualList.add(new Individual());
-
        // map
      Map<Long,String> customerMap=  IndividualComparatorDemo.generateIndividuals().stream()
                 .collect(Collectors.toMap(x->x.getAccountNo(),x->x.getContactNo()));
