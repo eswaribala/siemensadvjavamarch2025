@@ -1,4 +1,6 @@
 package com.siemens.customerapi.entities;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Customer_Id")
+    @Schema(hidden = true)
     protected long customerId;
     @Embedded
     protected FullName fullName;

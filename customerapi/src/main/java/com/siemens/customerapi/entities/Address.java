@@ -1,5 +1,6 @@
 package com.siemens.customerapi.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Schema(hidden = true)
     @Column(name="Address_Id")
     private long addressNo;
     @Column(name="Door_No", nullable=false, length=4)
