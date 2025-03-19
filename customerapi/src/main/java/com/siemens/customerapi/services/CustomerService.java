@@ -48,6 +48,12 @@ public class CustomerService implements ICustomerService {
                 new CustomerNotFoundException("Customer not found"));
     }
 
+    //non primary key
+    @Override
+    public List<Customer> getCustomerByContactNo(String contactNo) {
+        return this.customerRepository.findByContactNo(contactNo);
+    }
+
     @Override
     public List<Customer> getAllCustomers() {
         return this.customerRepository.findAll();

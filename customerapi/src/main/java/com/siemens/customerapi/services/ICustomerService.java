@@ -10,6 +10,7 @@ public interface ICustomerService {
     Customer updateCustomerContactNo(long customerId, String contactNo);
     boolean deleteCustomer(long customerId);
     Customer getCustomerById(long customerId);
+    List<Customer> getCustomerByContactNo(String contactNo);
     List<Customer> getAllCustomers();
 
 }
