@@ -1,17 +1,15 @@
-package com.siemens.customerapi.entities;
+package com.siemens.customerapi.dtos;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Embeddable
-public class FullName {
+
+public class FullNameRequest {
     private String firstName;
     private String lastName;
     private String middleName;
