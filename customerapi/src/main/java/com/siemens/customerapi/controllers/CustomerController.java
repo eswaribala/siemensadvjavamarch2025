@@ -71,7 +71,7 @@ public class CustomerController {
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GenericResponse<>("Customer Not Updated"));
     }
 
-    @PutMapping("/v1.0")
+    @PutMapping("/v1.0/updateContact")
     public ResponseEntity<GenericResponse> updateCustomerContactNo(@RequestParam("customerId") long customerId, @RequestParam("contactNo") String contactNo){
 
         Customer customer = this.customerService.updateCustomerContactNo(customerId, contactNo);
