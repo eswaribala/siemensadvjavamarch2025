@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @EqualsAndHashCode(callSuper=false)
 @Entity
-@Table(name="Individual")
+@Table(name="Corporate")
 public class Corporate extends Customer{
     @Enumerated(EnumType.STRING)
     @Column(name="Company_Type")
