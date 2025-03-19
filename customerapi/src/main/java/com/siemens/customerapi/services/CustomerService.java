@@ -37,9 +37,12 @@ public class CustomerService implements ICustomerService {
     @Override
     public boolean deleteCustomer(long customerId) {
         Customer customer = this.getCustomerById(customerId);
-        this.customerRepository.delete(customer);
-        return this.getCustomerById(customerId) == null;
-
+        boolean status = false;
+        if(customer != null) {
+            this.customerRepository.delete(customer);
+           status = true;
+        }
+        return status;
     }
 
     @Override
