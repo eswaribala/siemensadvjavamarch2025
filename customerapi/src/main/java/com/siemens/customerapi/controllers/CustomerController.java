@@ -22,22 +22,12 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @PostMapping("/v1.0")
-    public ResponseEntity<GenericResponse> addCustomer(@Valid @RequestBody CustomerRequest customerRequest){
+    public ResponseEntity<GenericResponse> addCustomer(@Valid @RequestBody CustomerRequest customerRequest,@RequestParam("tenant") String tenant) {
 
-        Customer customer = Customer.builder()
-                .customerId(customerRequest.getCustomerId())
-                .fullName(FullName.builder()
-                        .firstName(customerRequest.getFullName().getFirstName())
-                        .lastName(customerRequest.getFullName().getLastName())
-                        .middleName(customerRequest.getFullName().getMiddleName())
-                        .build())
-                .contactNo(customerRequest.getContactNo())
-                .email(customerRequest.getEmail())
-                .password(customerRequest.getPassword())
-                .build();
-        Customer customerObject=customerService.addCustomer(customer);
-        if(customerObject!=null){
-            return ResponseEntity.status(HttpStatus.CREATED).body(new GenericResponse<>(customerObject));
+
+       GenericResponse genericResponse=customerService.addCustomer(customerRequest,tenant);
+        if(genericResponse!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
         }else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GenericResponse<>("Customer Not Added"));
         }

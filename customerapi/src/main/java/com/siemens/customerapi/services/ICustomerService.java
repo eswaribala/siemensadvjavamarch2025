@@ -1,11 +1,13 @@
 package com.siemens.customerapi.services;
 
+import com.siemens.customerapi.dtos.CustomerRequest;
+import com.siemens.customerapi.dtos.GenericResponse;
 import com.siemens.customerapi.entities.Customer;
 
 import java.util.List;
 
 public interface ICustomerService {
-    Customer addCustomer(Customer customer);
+    GenericResponse addCustomer(CustomerRequest customerRequest, String tenant);
     Customer updateCustomerEmail(long customerId, String email);
     Customer updateCustomerContactNo(long customerId, String contactNo);
     boolean deleteCustomer(long customerId);
