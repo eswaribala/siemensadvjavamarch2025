@@ -35,7 +35,7 @@ public class DatabaseConfiguration {
         System.out.println("Entering Given Env.....");
         // System.out.println("User Name..."+vaultConfiguration.getUsername1());
        // System.out.println("Password..."+vaultConfiguration.getPassword1());
-        System.out.println("User Name..."+vaultConfiguration.getUsername());
+        System.out.println("User Name..."+vaultConfiguration.getMysqlusername());
         System.out.println("Password..."+vaultConfiguration.getPassword());
         dataSourceBuilder=DataSourceBuilder.create();
         dataSourceBuilder.url(dbUrl);
