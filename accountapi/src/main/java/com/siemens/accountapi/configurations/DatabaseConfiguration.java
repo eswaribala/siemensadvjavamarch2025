@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableConfigurationProperties(VaultConfiguration.class)
-
 public class DatabaseConfiguration {
 
     @Value("${spring.datasource.url}")
@@ -19,10 +18,11 @@ public class DatabaseConfiguration {
     @Value("${spring.datasource.driver-class-name}")
     private String driver;
 
+
     private DataSourceBuilder dataSourceBuilder;
     private final VaultConfiguration vaultConfiguration;
 
-    public DatabaseConfiguration (VaultConfiguration vaultConfig)
+   public DatabaseConfiguration (VaultConfiguration vaultConfig)
     {
         this.vaultConfiguration=vaultConfig;
     }
@@ -33,14 +33,14 @@ public class DatabaseConfiguration {
     public DataSource getDataSource()
     {
         System.out.println("Entering Given Env.....");
+        // System.out.println("User Name..."+vaultConfiguration.getUsername1());
+       // System.out.println("Password..."+vaultConfiguration.getPassword1());
         System.out.println("User Name..."+vaultConfiguration.getUsername());
         System.out.println("Password..."+vaultConfiguration.getPassword());
-        //System.out.println("User Name..."+vaultConfiguration.getUsername1());
-        //System.out.println("Password..."+vaultConfiguration.getPassword1());
         dataSourceBuilder=DataSourceBuilder.create();
         dataSourceBuilder.url(dbUrl);
-        dataSourceBuilder.username(vaultConfiguration.getUsername());
-        dataSourceBuilder.password(vaultConfiguration.getPassword());
+        dataSourceBuilder.username("root");
+        dataSourceBuilder.password("vignesh");
         dataSourceBuilder.driverClassName(driver);
         return dataSourceBuilder.build();
 
