@@ -20,6 +20,6 @@ public class Account {
     protected long accountNo;
 
     protected long runningTotal;
-
-    protected LocalDate openingDate;
+    @Schema(hidden = true)
+    protected String openingDate;
 }

@@ -8,6 +8,6 @@ FROM openjdk:21-jdk
 LABEL "com.siemens.accountapi"="accountapi"
 LABEL version=1.0-SNAPSHOT
 COPY --from=build target/accountapipublisher-0.0.1-SNAPSHOT.jar accountapipublisher-0.0.1-SNAPSHOT.jar
-EXPOSE 7072
+EXPOSE 7074
 #ENTRYPOINT ["java","-jar","customerapi-0.0.1-SNAPSHOT.jar"]
 ENTRYPOINT java -jar accountapipublisher-0.0.1-SNAPSHOT.jar

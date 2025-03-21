@@ -16,7 +16,7 @@ services:
         window: 50s
     ports:
        #- 9060-9070:7072
-        - 7072:7072
+        - 7074:7074
     volumes:
       - /data/compose-app
     #networks:

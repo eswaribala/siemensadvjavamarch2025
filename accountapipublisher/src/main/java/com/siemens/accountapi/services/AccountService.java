@@ -25,7 +25,7 @@ public class AccountService implements IAccountService {
     public CompletableFuture<SendResult<Object, Object>> publishAccountDetails(Account account) throws JsonProcessingException {
         Faker faker=new Faker();
         account.setAccountNo(faker.number().numberBetween(100000L,99999999L));
-
+        account.setOpeningDate(faker.date().birthday().toString());
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(account);
         //publishing the data
