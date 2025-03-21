@@ -5,5 +5,6 @@ docker network ls
 # to run compose file
 #go to folder where we have docker-compose.yaml present
 docker-compose up
-
+#to list all containers
+docker container ls -a
   
