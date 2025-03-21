@@ -8,3 +8,11 @@ docker-compose up
 #to list all containers
 docker container ls -a
   
+#to access mongodb
+docker exec -it <containerid> bin/bash
+#you will see prompt
+#mongosh
+#show dbs;
+#use accountdb;
+#show collections;
+#db.account.find();
