@@ -5,6 +5,8 @@ import com.siemens.accountapi.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService implements IAccountService {
     @Autowired
@@ -12,5 +14,10 @@ public class AccountService implements IAccountService {
     @Override
     public Account addAccount(Account account) {
         return this.accountRepository.save(account);
+    }
+
+    @Override
+    public List<Account> getAccounts() {
+        return this.accountRepository.findAll();
     }
 }

@@ -39,8 +39,8 @@ public class DatabaseConfiguration {
         System.out.println("Password..."+vaultConfiguration.getPassword());
         dataSourceBuilder=DataSourceBuilder.create();
         dataSourceBuilder.url(dbUrl);
-        dataSourceBuilder.username("root");
-        dataSourceBuilder.password("vignesh");
+        dataSourceBuilder.username(vaultConfiguration.getMysqlusername());
+        dataSourceBuilder.password(vaultConfiguration.getPassword());
         dataSourceBuilder.driverClassName(driver);
         return dataSourceBuilder.build();
 
