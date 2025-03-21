@@ -1,0 +1,9 @@
+#create the network
+docker network create siemensnetwork
+#to list the network
+docker network ls
+# to run compose file
+#go to folder where we have docker-compose.yaml present
+docker-compose up
+
+  
