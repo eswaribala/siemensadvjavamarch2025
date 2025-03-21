@@ -8,7 +8,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableConfigurationProperties(VaultConfiguration.class)
-
 @EnableDiscoveryClient
 public class AccountapiApplication {
 
